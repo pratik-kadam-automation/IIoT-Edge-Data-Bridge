@@ -1,0 +1,4 @@
+Order_ID,Machine_ID,Product_Type,Target_Qty,Produced_Qty,Shift_Operator
+ORD-2026-001,STRAW_SPM_01,Grass_Straw_6mm,5000,4820,Pratik_Kadam
+ORD-2026-002,STRAW_SPM_02,Grass_Straw_6mm,10000,6150,Rohan_Sharma
+ORD-2026-003,STRAW_SPM_01,Grass_Straw_8mm,5000,5000,Pratik_Kadam
