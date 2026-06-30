@@ -4,7 +4,7 @@ A production-grade OT-to-IT Backend Data Pipeline engineered to ingest shop-floo
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 This edge framework acts as an interoperability data bridge between local physical manufacturing layers and higher-level cloud computation clusters.
 
@@ -21,7 +21,7 @@ This edge framework acts as an interoperability data bridge between local physic
 
 ---
 
-## 🔌 Dual-Protocol Network Routing
+## Dual-Protocol Network Routing
 
 To bridge the gap between operational automation limits and corporate IT infrastructure, this backend engine supports two core data transmission pipelines:
 
@@ -37,7 +37,7 @@ To bridge the gap between operational automation limits and corporate IT infrast
 
 ---
 
-## 💾 Local Environment Deployment Guide
+## Local Environment Deployment Guide
 
 ### 1. Database Schema Initialization
 To set up the matching test database on your laptop using **XAMPP**, run the schema script located at `/database/database_setup.sql` inside your phpMyAdmin console (`http://localhost:8080/phpmyadmin/`).
@@ -52,17 +52,17 @@ var queryText = "SELECT Order_ID, Machine_ID, Produced_Qty FROM production_table
 msg.topic = queryText;
 msg.payload = queryText;
 
-## 📊 System Architecture & Visual Proof
+##  System Architecture & Visual Proof
 
-### 1️⃣ Node-RED Core Pipeline Layout
+### 1️ Node-RED Core Pipeline Layout
 This flow handles both cloud simulation loops and high-reliability local edge ingestion paths.
 ![Node-RED Flow Canvas](media/node_red_flow.png)
 
-### 2️⃣ Local Data Ingestion & JSON Transformation
+### 2️ Local Data Ingestion & JSON Transformation
 Proof of the local text/CSV parsing engine successfully converting raw plant-floor data into structured object streams.
 ![Local Debug Payload](media/local_txt.png, media/local_csv.png, media/local_sql.png)
 
-### 3️⃣ Unified Broker Delivery (MQTTX Reflection)
+### 3️ Unified Broker Delivery (MQTTX Reflection)
 The finalized payload successfully mapped, packaged, and transmitted to the MQTT broker.
 ![MQTTX Broker Reflection](media/mqttx_broker_reflection_txt.png, media/mqttx_ broker_reflection_csv.png, media/mqttx_broker_reflection_sql.png)
 return msg;
