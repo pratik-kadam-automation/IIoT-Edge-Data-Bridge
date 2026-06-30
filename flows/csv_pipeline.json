@@ -1,0 +1,42 @@
+[
+    {
+        "id": "csv_inject",
+        "type": "inject",
+        "z": "main_flow",
+        "name": "Trigger CSV Scan",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 120,
+        "y": 200,
+        "wires": [["csv_file_in"]]
+    },
+    {
+        "id": "csv_file_in",
+        "type": "file in",
+        "z": "main_flow",
+        "name": "Read shift_production.csv",
+        "filename": "C:\\Users\\pratik\\Documents\\GitHub\\IIoT-Edge-Data-Bridge\\sample data file\\shift_production.csv",
+        "format": "utf8",
+        "chunk": false,
+        "x": 350,
+        "y": 200,
+        "wires": [["csv_parser"]]
+    },
+    {
+        "id": "csv_parser",
+        "type": "csv",
+        "z": "main_flow",
+        "name": "CSV to JSON Object Converter",
+        "sep": ",",
+        "hdrin": true,
+        "skip": 0,
+        "strings": true,
+        "include_empty": false,
+        "include_null": false,
+        "x": 600,
+        "y": 200,
+        "wires": [["http_out"]]
+    }
+]

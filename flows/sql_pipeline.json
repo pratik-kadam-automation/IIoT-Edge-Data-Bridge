@@ -1,0 +1,52 @@
+[
+    {
+        "id": "sql_inject",
+        "type": "inject",
+        "z": "main_flow",
+        "name": "Timestamp Trigger",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "once": false,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 300,
+        "wires": [["sql_formatter"]]
+    },
+    {
+        "id": "sql_formatter",
+        "type": "function",
+        "z": "main_flow",
+        "name": "function 2 (Query Setup)",
+        "func": "var queryText = \"SELECT Order_ID, Machine_ID, Produced_Qty FROM production_table WHERE SyncedStatus = 0;\";\nmsg.topic = queryText;\nmsg.payload = queryText;\nreturn msg;",
+        "outputs": 1,
+        "x": 340,
+        "y": 300,
+        "wires": [["mysql_node"]]
+    },
+    {
+        "id": "mysql_node",
+        "type": "mysql",
+        "z": "main_flow",
+        "mydb": "local_xampp_db",
+        "name": "smart_factory",
+        "x": 550,
+        "y": 300,
+        "wires": [["split_node"]]
+    },
+    {
+        "id": "split_node",
+        "type": "split",
+        "z": "main_flow",
+        "name": "split",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addcb": "",
+        "x": 710,
+        "y": 300,
+        "wires": [["http_out"]]
+    }
+]

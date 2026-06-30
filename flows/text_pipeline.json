@@ -1,0 +1,46 @@
+[
+    {
+        "id": "txt_inject",
+        "type": "inject",
+        "z": "main_flow",
+        "name": "Trigger Log Scan",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 100,
+        "wires": [["txt_file_in"]]
+    },
+    {
+        "id": "txt_file_in",
+        "type": "file in",
+        "z": "main_flow",
+        "name": "Read machine_logs.txt",
+        "filename": "C:\\Users\\pratik\\Documents\\GitHub\\IIoT-Edge-Data-Bridge\\sample data file\\machine_logs.txt",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "x": 340,
+        "y": 100,
+        "wires": [["txt_parser"]]
+    },
+    {
+        "id": "txt_parser",
+        "type": "function",
+        "z": "main_flow",
+        "name": "Regex Log Parser",
+        "func": "var lines = msg.payload.split('\\n');\nvar parsedRecords = [];\n\nfor(var i=0; i<lines.length; i++) {\n    if(lines[i].trim() !== '') {\n        var parts = lines[i].split(' | ');\n        var record = {\n            timestamp: parts[0],\n            target: parts[1].split('=')[1],\n            qty: parts[2].split('=')[1],\n            operator: parts[3].split('=')[1],\n            status: parts[4].split('=')[1].replace('\\r', '')\n        };\n        parsedRecords.push(record);\n    }\n}\nmsg.payload = parsedRecords;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 100,
+        "wires": [["http_out"]]
+    }
+]
