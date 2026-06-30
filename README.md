@@ -52,4 +52,17 @@ var queryText = "SELECT Order_ID, Machine_ID, Produced_Qty FROM production_table
 msg.topic = queryText;
 msg.payload = queryText;
 
+## 📊 System Architecture & Visual Proof
+
+### 1️⃣ Node-RED Core Pipeline Layout
+This flow handles both cloud simulation loops and high-reliability local edge ingestion paths.
+![Node-RED Flow Canvas](media/node_red_flow.png)
+
+### 2️⃣ Local Data Ingestion & JSON Transformation
+Proof of the local text/CSV parsing engine successfully converting raw plant-floor data into structured object streams.
+![Local Debug Payload](media/local_txt.png, media/local_csv.png, media/local_sql.png)
+
+### 3️⃣ Unified Broker Delivery (MQTTX Reflection)
+The finalized payload successfully mapped, packaged, and transmitted to the MQTT broker.
+![MQTTX Broker Reflection](media/mqttx_broker_reflection_txt.png, media/mqttx_ broker_reflection_csv.png, media/mqttx_broker_reflection_sql.png)
 return msg;
