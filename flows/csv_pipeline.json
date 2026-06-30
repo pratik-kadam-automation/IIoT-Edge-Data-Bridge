@@ -1,27 +1,50 @@
 [
     {
-        "id": "csv_inject",
+        "id": "csv_inject_demo",
         "type": "inject",
         "z": "main_flow",
-        "name": "Trigger CSV Scan",
+        "name": "[DEMO] Trigger Cloud CSV Scan",
         "props": [{"p": "payload"}],
         "repeat": "",
-        "crontab": "",
         "once": false,
-        "x": 120,
-        "y": 200,
+        "x": 160,
+        "y": 240,
+        "wires": [["csv_http_get"]]
+    },
+    {
+        "id": "csv_http_get",
+        "type": "http request",
+        "z": "main_flow",
+        "name": "Fetch CSV from GitHub Cloud",
+        "method": "GET",
+        "url": "https://raw.githubusercontent.com/pratik-kadam-automation/IIoT-Edge-Data-Bridge/main/sample%20data%20file/shift_production.csv",
+        "persist": false,
+        "x": 420,
+        "y": 240,
+        "wires": [["csv_parser"]]
+    },
+    {
+        "id": "csv_inject_onsite",
+        "type": "inject",
+        "z": "main_flow",
+        "name": "[ON-SITE] Trigger Local CSV Scan",
+        "props": [{"p": "payload"}],
+        "repeat": "",
+        "once": false,
+        "x": 160,
+        "y": 300,
         "wires": [["csv_file_in"]]
     },
     {
         "id": "csv_file_in",
         "type": "file in",
         "z": "main_flow",
-        "name": "Read shift_production.csv",
-        "filename": "C:\\Users\\pratik\\Documents\\GitHub\\IIoT-Edge-Data-Bridge\\sample data file\\shift_production.csv",
+        "name": "Read Local shift_production.csv",
+        "filename": "C:\\iiot_bridge_data\\shift_production.csv",
         "format": "utf8",
         "chunk": false,
-        "x": 350,
-        "y": 200,
+        "x": 410,
+        "y": 300,
         "wires": [["csv_parser"]]
     },
     {
@@ -33,10 +56,8 @@
         "hdrin": true,
         "skip": 0,
         "strings": true,
-        "include_empty": false,
-        "include_null": false,
-        "x": 600,
-        "y": 200,
-        "wires": [["http_out"]]
+        "x": 660,
+        "y": 270,
+        "wires": [["debug_or_network_out"]]
     }
 ]
