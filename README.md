@@ -14,7 +14,7 @@ This edge framework acts as an interoperability data bridge between local physic
 └── Local SQL Datastores ─> (MySQL Query)    ──┘                              └──( HTTP )──> [ API Gateway / Lambda ]
 
 
-### 📊 Ingestion Capabilities Verified Locally:
+### Ingestion Capabilities Verified Locally:
 1. **Raw Text Log Parser (.txt):** Streamlines string extraction from unstructured legacy automation logs.
 2. **Dynamic CSV Ingestor (.csv):** Automatically converts comma-separated manufacturing arrays into structured JSON objects.
 3. **Relational Database Synchronization (MySQL):** Implements a low-overhead handshaking routine that pulls only unsynced telemetry data (`SyncedStatus = 0`) directly from the factory floor datastore.
